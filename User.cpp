@@ -50,93 +50,115 @@ User::~User()
 
 User& User::operator=(const User& other)
 {
-	// TODO: insert return statement here
+	copy(other);
+	return*this;
 }
 
 User& User::operator=(User&& other)
 {
-	// TODO: insert return statement here
+	copy(other);
+	other.id =-1;
+	other.balance =0;
+	other.savings =0;
+	return*this;
 }
 
 int User::getId() const
 {
-	return 0;
+	return this->id;
 }
 
 string User::getFirstName() const
 {
-	return string();
+	return this->firstName;
 }
 
 string User::getLastName() const
 {
-	return string();
+	return this->lastName;
+}
+
+string User::getLastName() const
+{
+	return this->firstName + " " + this->lastName;
 }
 
 string User::getEmail() const
 {
-	return string();
+	return this->email;
 }
 
 string User::getPassword() const
 {
-	return string();
+	return this->password;
 }
 
 double User::getBalance() const
 {
-	return 0.0;
+	return this->balance;
 }
 
 double User::getSavings() const
 {
-	return 0.0;
+	return this->savings;
 }
 
 double User::getTotal() const
 {
-	return 0.0;
+	return this->balance + this->savings;
 }
 
 void User::deposit(double amount)
 {
+	return this->balance += amount;
 }
 
 bool User::withdraw(double amount)
 {
+	if (this->balance < amount)
 	return false;
+	this->balance -= amount;
+	return true;
 }
 
 void User::depositSavings(double amount)
 {
+	this->savings += amount;
 }
 
 bool User::withdrawSavings(double amount)
 {
+	if(this->savings < amount)
 	return false;
+	this->savings -= amount;
+	return true;
 }
 
 bool User::operator==(const User& other) const
 {
-	return false;
+	return this->id = other.getId();
 }
 
 bool User::operator!=(const User& other) const
 {
-	return false;
+	return this->id != other.getId();
 }
 
 bool User::operator<(const User& other) const
 {
-	return false;
+	return this->balance < other.getBalance();
 }
 
 bool User::operator>(const User& other) const
 {
-	return false;
+	return this->balance > other.getBalance();
 }
 
 ostream& operator<<(ostream& out, const User& obj)
 {
-	// TODO: insert return statement here
+	out << "[User#" << obj.id << "]";
+	out << obj.firstName << " " << obj.string lastName;
+	out << " | " << obj.string email;
+	out << " | Balance: EUR" << obj.balance;
+	out << " | Savings: EUR" << obj.savings;
 }
